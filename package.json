@@ -1,0 +1,25 @@
+{
+  "name": "notes-api-2324802010233",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "start": "node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huan26677/notes-api-2324802010233.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/huan26677/notes-api-2324802010233/issues"
+  },
+  "homepage": "https://github.com/huan26677/notes-api-2324802010233#readme",
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
