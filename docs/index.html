@@ -1,142 +1,174 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-  <title>Bài 1 - Hello Cloud</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Báo cáo thực hành Điện toán đám mây – Bài 1 và Bài 2, nhóm bốn sinh viên.">
+  <title>Báo cáo Điện toán đám mây | Bài 1 &amp; Bài 2</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fc;
-      color: #243247;
-      padding: 24px;
-      line-height: 1.6;
-    }
-    main {
-      max-width: 950px;
-      margin: auto;
-      padding: 28px;
-      background: white;
-      border-radius: 12px;
-    }
-    h1, h2 { color: #1755a3; }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid #cad5e2;
-      padding: 12px;
-      text-align: left;
-    }
-    th {
-      background: #1755a3;
-      color: white;
-    }
-    li { margin-bottom: 12px; }
-    .table-wrap { overflow-x: auto; }
+    :root { color-scheme: light; --primary: #174d82; --navy:#173451; --ink:#253449; --muted:#576a80; --line:#d7e1eb; --surface:#f4f7fb; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; padding: 20px; color: var(--ink); background: #eef3f9; font-family: Arial, 'Segoe UI', sans-serif; line-height: 1.65; }
+    main { max-width: 980px; margin: 0 auto; padding: 40px; background: #fff; border: 1px solid #e0e7ef; border-radius: 12px; box-shadow: 0 8px 28px rgba(23,52,81,.06); }
+    h1,h2 { color: var(--primary); line-height: 1.3; }
+    h1 { margin-top: .5em; font-size: 1.8rem; }
+    h2 { margin-top: 1.9em; font-size: 1.3rem; }
+    h3 { color: var(--navy); margin-top: 1.4em; font-size: 1.06rem; }
+    p { margin: .65em 0; }
+    .top { border-bottom: 1px solid var(--line); padding-bottom: 25px; margin-bottom: 30px; }
+    .eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .77rem; font-weight: 700; }
+    .top h1 { margin: 5px 0 8px; }
+    .top p { color: var(--muted); margin: 4px 0 16px; }
+    nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    nav a { padding: 7px 12px; border: 1px solid #bfd0e0; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: .88rem; }
+    a { color: #145ea4; overflow-wrap: anywhere; }
+    a:hover { text-decoration: underline; }
+    section { scroll-margin-top: 20px; }
+    .divider { border: none; border-top: 2px solid #cbd9e7; margin: 46px 0 35px; }
+    .table-wrap { width: 100%; overflow-x: auto; margin: 15px 0 20px; }
+    table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+    th,td { border: 1px solid var(--line); padding: 10px 11px; text-align: left; vertical-align: top; }
+    th { color: white; background: var(--primary); font-weight: 700; }
+    tr:nth-child(even) td { background: #f5f8fc; }
+    li { margin: 7px 0; }
+    code { padding: 2px 4px; background: #edf3fa; border-radius: 4px; font-size: .95em; overflow-wrap: anywhere; }
+    .note { background: #f2f6fc; border-left: 3px solid #7a9dbf; padding: 12px 16px; margin: 15px 0; }
+    .warning { background: #fff8eb; border-left-color: #c18a39; }
+    .small { font-size: .9rem; color: var(--muted); }
+    .meta { display:flex;flex-wrap:wrap;gap:10px 24px; }
+    .meta span { display:block; }
+    .footer { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 40px; color: var(--muted); font-size: .86rem; }
+    @media (max-width: 640px) { body { padding: 0; } main { border-radius:0; padding: 20px 15px; } h1 { font-size: 1.45rem; } th,td { font-size:.87rem;padding:8px; } }
+    @media print { body { padding:0; background: white; } main { box-shadow:none; border:0; padding:0; } nav { display:none; } a { color: var(--ink); } .table-wrap { overflow:visible; } tr { break-inside: avoid; } }
   </style>
 </head>
 <body>
 <main>
-  <h1>BÀI 1: HELLO CLOUD API</h1>
-  <p><b>Họ tên:</b> Nguyễn Hoàng Anh Huân</p>
-  <p><b>MSSV:</b> 2324802010233</p>
-  <p><b>Ngày:</b> 05/11/2026</p>
+  <header class="top">
+    <div class="eyebrow">Trường Đại học Thủ Dầu Một · Môn Điện toán đám mây</div>
+    <h1>BÁO CÁO THỰC HÀNH</h1>
+    <p>Bài 1 – Hello Cloud API &nbsp;·&nbsp; Bài 2 – Ảo hóa, Container và mô phỏng trung tâm dữ liệu</p>
+    <nav aria-label="Mục lục">
+      <a href="#bai1">Bài 1 – Cá nhân</a>
+      <a href="#bai2">Bài 2 – Nhóm 4 người</a>
+      <a href="#minh-chung">Mã nguồn và minh chứng</a>
+    </nav>
+  </header>
 
-  <h2>1. Kết quả thực hành</h2>
-  <p>
-    Đã khởi tạo môi trường GitHub Codespaces,
+  <section id="bai1">
+<h1>BÀI 1: HELLO CLOUD API</h1>
+<p><b>Họ tên:</b> Nguyễn Hoàng Anh Huân</p>
+<p><b>MSSV:</b> 2324802010233</p>
+<p><b>Ngày:</b> 05/11/2026</p>
+<h2>1. Kết quả thực hành</h2>
+<p>Đã khởi tạo môi trường GitHub Codespaces,
     cài đặt Node.js, Express và triển khai
-    thành công API Hello Cloud tại cổng 3000.
-  </p>
+    thành công API Hello Cloud tại cổng 3000.</p>
+<h2>2. Bảng so sánh môi trường</h2>
+<div class="table-wrap"><table>
+<tr><th>Tiêu chí</th><th>Máy cá nhân</th><th>Codespace</th></tr>
+<tr><td>Thời gian đến node -v</td><td>1 s</td><td>5 ph</td></tr>
+<tr><td>CPU</td><td>8 CPU logic</td><td>2 CPU logic</td></tr>
+<tr><td>RAM</td><td>32 GB</td><td>7.8 GB</td></tr>
+<tr><td>Hệ điều hành</td><td>Windows 10 IoT Enterprise LTSC 2021</td><td>Linux 6.8.0-1064-azure</td></tr>
+<tr><td>Truy cập từ thiết bị khác</td><td>Cần cấu hình mạng phù hợp</td><td>URL HTTPS qua Port Forwarding</td></tr>
+<tr><td>Chi phí và cách đo</td><td>Thiết bị, điện, Internet</td><td>Core-hours và lưu trữ; Usage: 0.04$</td></tr>
+</table></div>
+<h2>3. Năm đặc tính NIST</h2>
+<ol>
+<li><b>On-demand self-service:</b> Tự tạo Codespace mà không cần quản trị viên cấp phát máy.</li>
+<li><b>Broad network access:</b> Truy cập API bằng máy tính và điện thoại thông qua URL HTTPS.</li>
+<li><b>Resource pooling:</b> Codespace sử dụng tài nguyên được cấp từ hạ tầng dùng chung của nhà cung cấp.</li>
+<li><b>Rapid elasticity:</b> Có thể nhanh chóng cấp phát, dừng và thay đổi cấu hình tài nguyên Codespace.</li>
+<li><b>Measured service:</b> Theo dõi việc sử dụng tài nguyên trong mục Billing Usage.</li>
+</ol>
+<h2>4. Kết luận</h2>
+<p>GitHub Codespaces giúp tạo nhanh môi trường lập trình trên đám mây.
+     Việc triển khai API không đòi hỏi tự cài đặt và quản lý máy chủ vật lý.
+     Tài nguyên có thể được theo dõi và quản lý theo mức sử dụng.</p>
+</section>
 
-  <h2>2. Bảng so sánh môi trường</h2>
-  <div class="table-wrap">
-  <table>
-    <tr>
-      <th>Tiêu chí</th>
-      <th>Máy cá nhân</th>
-      <th>Codespace</th>
-    </tr>
-    <tr>
-      <td>Thời gian đến node -v</td>
-      <td>1 s</td>
-      <td>5 ph</td>
-    </tr>
-    <tr>
-      <td>CPU</td>
-      <td>8 CPU logic</td>
-      <td>2 CPU logic</td>
-    </tr>
-    <tr>
-      <td>RAM</td>
-      <td>32 GB</td>
-      <td>7.8 GB</td>
-    </tr>
-    <tr>
-      <td>Hệ điều hành</td>
-      <td>Windows 10 IoT Enterprise LTSC 2021</td>
-      <td>Linux 6.8.0-1064-azure</td>
-    </tr>
-    <tr>
-      <td>Truy cập từ thiết bị khác</td>
-      <td>Cần cấu hình mạng phù hợp</td>
-      <td>URL HTTPS qua Port Forwarding</td>
-    </tr>
-    <tr>
-      <td>Chi phí và cách đo</td>
-      <td>Thiết bị, điện, Internet</td>
-      <td>
-        Core-hours và lưu trữ;
-        Usage: 0.04$
-      </td>
-    </tr>
-  </table>
-  </div>
+  <hr class="divider">
+  <section id="bai2">
+    <h1>BÀI 2: ẢO HÓA, CONTAINER VÀ MÔ PHỎNG TRUNG TÂM DỮ LIỆU</h1>
+    <p class="small">Ngày thực hiện: 12/11/2026 · Môi trường: GitHub Codespaces, Docker, GHCR, CloudSim Plus 9.0.0, JDK 25.</p>
 
-  <h2>3. Năm đặc tính NIST</h2>
-  <ol>
-    <li>
-      <b>On-demand self-service:</b>
-      Tự tạo Codespace mà không cần
-      quản trị viên cấp phát máy.
-    </li>
-    <li>
-      <b>Broad network access:</b>
-      Truy cập API bằng máy tính và
-      điện thoại thông qua URL HTTPS.
-    </li>
-    <li>
-      <b>Resource pooling:</b>
-      Codespace sử dụng tài nguyên
-      được cấp từ hạ tầng dùng chung
-      của nhà cung cấp.
-    </li>
-    <li>
-      <b>Rapid elasticity:</b>
-      Có thể nhanh chóng cấp phát,
-      dừng và thay đổi cấu hình
-      tài nguyên Codespace.
-    </li>
-    <li>
-      <b>Measured service:</b>
-      Theo dõi việc sử dụng tài nguyên
-      trong mục Billing Usage.
-    </li>
-  </ol>
+    <h2>Thông tin nhóm thực hiện Bài 2</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>STT</th><th>Họ và tên</th><th>Mã số sinh viên</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Nguyễn Hoàng Anh Huân</td><td>2324802010233</td></tr>
+        <tr><td>2</td><td>Hoàn Văn Phương</td><td>2324802010327</td></tr>
+        <tr><td>3</td><td>Nguyễn Thị Hồng Hân</td><td>2324802010213</td></tr>
+        <tr><td>4</td><td>Trần Anh Dũng</td><td>2324802010182</td></tr>
+      </tbody>
+    </table></div>
 
-  <h2>4. Kết luận</h2>
-  <p>
-    GitHub Codespaces giúp tạo nhanh môi
-    trường lập trình trên đám mây.
-    Việc triển khai API không đòi hỏi
-    tự cài đặt và quản lý máy chủ vật lý.
-    Tài nguyên có thể được theo dõi
-    và quản lý theo mức sử dụng.
-  </p>
+    <p><strong>Repository:</strong> <a href="https://github.com/huan26677/notes-api-2324802010233">notes-api-2324802010233</a></p>
+
+    <h2>1. Đóng gói và chạy Docker Container</h2>
+    <p>Nhóm sử dụng lại API Node.js/Express của Bài 1. <a href="https://github.com/huan26677/notes-api-2324802010233/blob/main/Dockerfile">Dockerfile</a> dùng <code>node:22-alpine</code>, cài thư viện bằng <code>npm ci --omit=dev</code> và chạy máy chủ API trên cổng 3000 bằng tài khoản <code>node</code>. <a href="https://github.com/huan26677/notes-api-2324802010233/blob/main/.dockerignore">.dockerignore</a> loại bỏ các thành phần không cần thiết khỏi ngữ cảnh build.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Container</th><th>Ánh xạ cổng</th><th>Giới hạn CPU</th><th>Giới hạn RAM</th><th>Quan sát</th></tr></thead>
+      <tbody>
+        <tr><td><code>notes1</code></td><td>3000:3000</td><td>Không đặt giới hạn riêng</td><td>Không đặt giới hạn riêng</td><td>API GET / trả JSON thành công.</td></tr>
+        <tr><td><code>notes2</code></td><td>3001:3000</td><td>0,5 CPU</td><td>128 MiB</td><td>API trả JSON; <code>docker stats</code> hiển thị giới hạn 128 MiB.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Hai container có <code>host</code> khác nhau. Trong bài thực hành, cả hai phản hồi khoảng 2 CPU logic và 7,8 GB RAM theo API, dù container <code>notes2</code> có hạn mức CPU/RAM riêng.</p>
+
+    <h2>2. Bảng so sánh máy ảo và Container</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Tiêu chí</th><th>GitHub Codespace (VM)</th><th>Container <code>notes2</code></th></tr></thead>
+      <tbody>
+        <tr><td>Thời gian khởi động</td><td>Bài 1 ghi nhận khoảng 5 phút đến khi dùng được <code>node -v</code>.</td><td><strong>Chưa ghi số đo chính xác</strong> – đo bằng <code>time docker run --rm notes-api:1.0 node -e "1"</code>, lấy giá trị <code>real</code>.</td></tr>
+        <tr><td>Kích thước / lưu trữ</td><td>Đề bài nêu hạn mức lưu trữ 15 GB-tháng (không phải kích thước VM).</td><td>Image <code>notes-api:1.0</code> khoảng 63,3 MB theo ảnh <code>docker images</code> của buổi thực hành.</td></tr>
+        <tr><td>Nhân hệ điều hành</td><td>Kernel Linux của máy ảo Codespace.</td><td>Chia sẻ kernel với Codespace; kiểm tra bằng <code>uname -r</code> trong và ngoài container.</td></tr>
+        <tr><td>Mức cô lập</td><td>Cô lập ở lớp máy ảo, có hệ điều hành khách.</td><td>Cô lập tiến trình, mạng, hệ thống tệp bằng namespaces; tài nguyên bằng cgroups.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note">Giới hạn so sánh: thời gian khởi tạo môi trường Codespace và thời gian chạy một tiến trình Node.js trong container là hai phép đo khác nhau. Hạn mức 15 GB-tháng cũng không tương đương kích thước VM.</p>
+
+    <h2>3. Phát hành image trên GHCR</h2>
+    <p><strong>Image:</strong> <code>ghcr.io/huan26677/notes-api:1.0</code></p>
+    <p><strong>Trang GitHub Packages:</strong> <a href="https://github.com/huan26677?tab=packages">Danh sách package tài khoản huan26677</a> (chọn <code>notes-api</code>).</p>
+    <p>Quy trình: đăng nhập GHCR bằng token có quyền ghi package, gắn tag, chạy <code>docker push</code>, đặt package ở chế độ Public, đăng xuất và kiểm tra tải về bằng <code>docker pull</code>. Sau đó dùng image đã tải để chạy API và kiểm tra phản hồi JSON.</p>
+    <p class="note warning"><strong>Đối chiếu trước khi nộp:</strong> kiểm tra trên GitHub Packages rằng visibility thực tế của package là Public. Không lấy riêng kết quả <code>curl localhost</code> làm bằng chứng công khai.</p>
+
+    <h2>4. Mô phỏng CloudSim Plus</h2>
+    <p>Mô phỏng dựa trên <code>BasicFirstExample</code> với cấu hình mặc định: 1 Host có 8 lõi, 2 VM (4 lõi mỗi VM), 4 Cloudlet (2 lõi mỗi Cloudlet). Mỗi lần chỉ thay đổi một yếu tố so với bản gốc.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Lần</th><th>Thay đổi</th><th>Finish Time cuối (giây mô phỏng)</th><th>Nhận xét</th></tr></thead>
+      <tbody>
+        <tr><td>0</td><td>Giữ nguyên cấu hình và Time-shared.</td><td>20,1</td><td>4/4 Cloudlet hoàn thành.</td></tr>
+        <tr><td>1</td><td>Tăng số VM từ 2 lên 4.</td><td>45,6</td><td>Chỉ 2/4 VM được cấp phát; 4/4 Cloudlet vẫn hoàn thành. Việc thử cấp VM không thành công làm trễ thời điểm bắt đầu tác vụ.</td></tr>
+        <tr><td>2</td><td>Tăng số Cloudlet từ 4 lên 8.</td><td>40,1*</td><td>Chỉ 4/8 Cloudlet hoàn thành; log cảnh báo thiếu RAM và băng thông của VM.</td></tr>
+        <tr><td>3</td><td>Chuyển sang CloudletSchedulerSpaceShared.</td><td>20,1</td><td>4/4 Cloudlet hoàn thành; kết quả bằng lần 0 ở cấu hình thử nghiệm này.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">* 40,1 giây là Finish Time lớn nhất của 4 Cloudlet <strong>đã hoàn thành</strong> trong lần 2; không phải thời gian hoàn tất toàn bộ 8 tác vụ.</p>
+    <p><strong>Phân tích:</strong> Khi số VM tăng lên 4, tổng số lõi yêu cầu là 16, vượt 8 lõi của Host, nên hai VM không được cấp phát. Khi số Cloudlet tăng mà tài nguyên VM không đổi, một số tác vụ không hoàn thành trước khi mô phỏng kết thúc. Với Space-shared, mỗi VM có 4 lõi và nhận 2 Cloudlet cần 2 lõi mỗi tác vụ, nên vẫn có thể chạy đồng thời; vì vậy thời gian bằng Time-shared trong trường hợp này.</p>
+
+    <h2>5. Trả lời câu hỏi phản biện</h2>
+    <h3>Câu 1. Vì sao notes2 vẫn báo memoryGB của máy chủ?</h3>
+    <p>Giới hạn <code>--memory=128m</code> do Docker áp đặt qua cgroups. API sử dụng <code>os.totalmem()</code>; trong môi trường thực hành, giá trị trả về vẫn phản ánh RAM mà hệ điều hành báo cho ứng dụng, chứ không thể hiện trực tiếp giới hạn 128 MiB. Vì vậy, chương trình Node.js/Java cần xét giới hạn bộ nhớ container, quản lý heap và theo dõi tiêu thụ tài nguyên để hạn chế lỗi hết bộ nhớ hoặc bị kết thúc tiến trình.</p>
+    <h3>Câu 2. Time-shared và Space-shared khác nhau thế nào? Nên chọn chính sách nào cho gói giá rẻ?</h3>
+    <p>Time-shared phân chia thời gian sử dụng CPU giữa các tác vụ, cho phép nhiều tác vụ cùng tiến triển nhưng có thể cạnh tranh tài nguyên. Space-shared ưu tiên cấp lõi cho tác vụ khi đủ tài nguyên; tác vụ chưa được cấp phát phải chờ. Nhà cung cấp có thể dùng Time-shared cho dịch vụ giá rẻ nhằm khai thác tài nguyên linh hoạt hơn, kết hợp hạn mức và giám sát để giữ chất lượng dịch vụ. Trong thí nghiệm này, cả hai có Finish Time 20,1 giây, không đủ cơ sở để kết luận Space-shared luôn chậm hơn.</p>
+    <h3>Câu 3. Mô phỏng có ích gì, và sai lệch với thực tế ở đâu?</h3>
+    <p>CloudSim Plus cho phép kiểm thử số máy chủ, máy ảo, tải tác vụ và chính sách phân bổ trước khi thuê hạ tầng thật, qua đó phát hiện điểm nghẽn và so sánh các phương án. Tuy nhiên, mô phỏng đơn giản hóa nhiều yếu tố như độ trễ mạng, I/O, đặc tính CPU, biến động tải, chi phí ảo hóa và sự cố, nên cần kiểm chứng lại bằng thử nghiệm triển khai thực tế.</p>
+
+    <h2 id="minh-chung">6. Mã nguồn và minh chứng</h2>
+    <ul>
+      <li><a href="https://github.com/huan26677/notes-api-2324802010233/blob/main/Dockerfile">Dockerfile</a> và <a href="https://github.com/huan26677/notes-api-2324802010233/blob/main/.dockerignore">.dockerignore</a>.</li>
+      <li><a href="evidence/sim0.log">Log lần 0</a> · <a href="evidence/sim1.log">Log lần 1</a> · <a href="evidence/sim2.log">Log lần 2</a> · <a href="evidence/sim3.log">Log lần 3</a>.</li>
+      <li><a href="evidence/BasicFirstExample_original.java">Mã Java gốc</a> · <a href="evidence/BasicFirstExample_space_shared.java">Mã Java Space-shared</a>.</li>
+    </ul>
+    <h2>7. Kết luận Bài 2</h2>
+    <p>Nhóm đã thực hành đóng gói ứng dụng API thành Docker image, chạy hai container với giới hạn tài nguyên khác nhau và thử phát hành image qua GHCR. Kết quả CloudSim Plus minh họa rằng việc tăng số VM hoặc Cloudlet không bảo đảm tăng hiệu quả nếu Host hoặc VM không đáp ứng đủ tài nguyên. Hiệu quả của chính sách lập lịch phụ thuộc cấu hình và tải tác vụ cụ thể.</p>
+  </section>
+
+  <footer class="footer">Báo cáo thực hành · Bài 1 (cá nhân) và Bài 2 (nhóm 4 thành viên) · 12/11/2026</footer>
 </main>
 </body>
 </html>
